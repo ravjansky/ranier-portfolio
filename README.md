@@ -2,7 +2,7 @@
 
 A high-fidelity, cinematic personal portfolio landing page designed for Rainier S. Juson III, a Hospitality Operations Manager and Cruise Hospitality Supervisor. 
 
-**Live Demo:** [https://ranierjuson.pages.dev](https://ranierjuson.pages.dev)
+**Live Demo:** [https://ranier.pages.dev](https://ranier.pages.dev)
 
 ## Overview
 
