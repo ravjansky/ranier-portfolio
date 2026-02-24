@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Rainier S. Juson III — Hospitality Management Professional. NCII Certified in Housekeeping, Front Office, and Bartending. Trained in hotel and cruise ship operations.">
+    <title>Rainier S. Juson III — Hospitality Professional</title>
+
+    <!-- Favicon cascade -->
+    <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico">
+    <link rel="icon" type="image/avif" href="assets/favicons/favicon.avif">
+    <link rel="icon" type="image/webp" href="assets/favicons/favicon.webp">
+    <link rel="apple-touch-icon" href="assets/webclip/webclip.png">
+
+    <!-- Preload critical portrait -->
+    <link rel="preload" as="image" href="assets/images/ranier.avif" type="image/avif">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger + SplitText -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-deep: #1F2A30;
+            /* Midnight Teal — authority, maritime depth */
+            --color-gold: #C6A85E;
+            /* Muted Gold — hospitality excellence */
+            --color-ivory: #F4F1EA;
+            /* Warm Ivory — cleanliness, service purity */
+            --color-slate: #4A555C;
+            /* Slate Gray — management, professionalism */
+            --color-surface: #0D1417;
+            /* Near-black page base */
+            --color-border: rgba(198, 168, 94, 0.18);
+            /* Subtle gold dividers */
+
+            --text-hero: clamp(2.8rem, 6vw, 6rem);
+            --text-display: clamp(2rem, 4vw, 3.5rem);
+            --text-heading: clamp(1.25rem, 2.5vw, 1.75rem);
+            --text-body: clamp(0.9rem, 1.5vw, 1.05rem);
+            --text-small: clamp(0.7rem, 1vw, 0.8rem);
+        }
+
+        /* Base & Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: initial;
+            /* Lenis handles it */
+        }
+
+        body {
+            background-color: var(--color-surface);
+            color: var(--color-slate);
+            font-family: 'Montserrat', sans-serif;
+            font-size: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Noise Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.04;
+            /* feTurbulence generated SVG background */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        canvas {
+            /* To hide Lenis outline artifacts if any */
+            outline: none;
+        }
+
+        /* Typography Helper Classes */
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: var(--color-ivory);
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .text-gold {
+            color: var(--color-gold);
+        }
+
+        .text-ivory {
+            color: var(--color-ivory);
+        }
+
+        .text-slate {
+            color: var(--color-slate);
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 3rem;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .line-height-tight {
+            line-height: 1.05;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            min-height: 44px;
+            /* Touch target */
+        }
+
+        .btn-primary {
+            background-color: var(--color-gold);
+            color: var(--color-deep);
+            border: 1px solid var(--color-gold);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-gold);
+            border: 1px solid var(--color-gold);
+        }
+
+        /* Decorative Elements */
+        .deco-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+            margin: 1.5rem auto;
+        }
+
+        .deco-divider-left {
+            margin: 1.5rem 0;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-surface);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-gold);
+            border-radius: 999px;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5vw;
+        }
+
+        /* --- SECTION 1: NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            z-index: 100;
+            border-radius: 999px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            backdrop-filter: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .navbar.scrolled {
+            background: rgba(13, 20, 23, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(198, 168, 94, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-ivory);
+            font-weight: 600;
+        }
+
+        .nav-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a.link-item {
+            font-size: 0.9rem;
+            color: var(--color-ivory);
+            opacity: 0.8;
+        }
+
+        .nav-links a.link-item:hover {
+            opacity: 1;
+            color: var(--color-gold);
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-ivory);
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(198, 168, 94, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 102;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background-color: var(--color-gold);
+            margin: 5px auto;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--color-surface);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 101;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu a {
+            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--color-ivory);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                width: 95%;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* --- SECTION 2: HERO --- */
+        .hero-section {
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            overflow: hidden;
+            background-color: var(--color-surface);
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background: repeating-linear-gradient(45deg, var(--color-gold), var(--color-gold) 1px, transparent 1px, transparent 20px);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 2rem;
+            z-index: 1;
+        }
+
+        .hero-logo-large {
+            width: 80px;
+            height: 80px;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: var(--text-hero);
+            margin: 1.5rem 0;
+        }
+
+        .hero-title div {
+            overflow: hidden;
+        }
+
+        .hero-desc {
+            max-width: 420px;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-portrait-wrapper {
+            position: relative;
+            height: 80vh;
+            /* Adjust as needed */
+            max-height: 800px;
+            width: 100%;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-portrait {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            clip-path: inset(0 0 100% 0);
+            /* Initial state for GSAP */
+        }
+
+        .hero-portrait-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, var(--color-surface) 100%);
+            z-index: 2;
+        }
+
+        /* Frame overlay */
+        .hero-portrait-frame {
+            position: absolute;
+            inset: -12px;
+            outline: 1px solid var(--color-gold);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-content {
+                order: 2;
+                padding: 0;
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero-portrait-wrapper {
+                order: 1;
+                max-width: 500px;
+                margin: 0 auto;
+                height: 60vh;
+            }
+
+            .deco-divider-left {
+                margin: 1.5rem auto;
+            }
+
+            .hero-desc {
+                text-align: center;
+            }
+        }
+
+        /* --- SECTION 3: COMPETENCIES --- */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .competencies-section {
+            background-color: var(--color-surface);
+        }
+
+        .competencies-bg-band {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: var(--color-deep);
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(31, 42, 48, 0.6);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .glass-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            stroke: var(--color-gold);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--color-ivory);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            font-size: 0.85rem;
+            color: var(--color-slate);
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- SECTION 4: EXPERIENCE --- */
+        .experience-section {
+            background-color: var(--color-deep);
+            color: var(--color-ivory);
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 200px);
+            background-image: url('https://images.unsplash.com/photo-1542314831-c6a4d27eceb0?q=80&w=2070&auto=format&fit=crop');
+            /* Hotel interior dramatic lighting */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: var(--color-gold);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-entry {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+            opacity: 0;
+            /* JS will animate */
+        }
+
+        .timeline-entry:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            width: 90%;
+            background: rgba(13, 20, 23, 0.7);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-entry:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-entry:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 2rem;
+            right: -6px;
+            z-index: 2;
+            transform: scale(0);
+            /* JS will animate */
+        }
+
+        .timeline-entry:nth-child(even) .timeline-dot {
+            left: -6px;
+            right: auto;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            border-radius: 999px;
+            font-size: 0.65rem;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-entry {
+                padding-right: 0;
+                padding-left: 50px;
+                justify-content: flex-start;
+            }
+
+            .timeline-entry:nth-child(even) {
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin: 0 !important;
+            }
+
+            .timeline-dot {
+                left: -36px !important;
+                right: auto !important;
+            }
+        }
+
+        /* --- SECTION 5: CERTIFICATIONS --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            background: rgba(31, 42, 48, 0.2);
+            transition: border-color 0.3s;
+            clip-path: inset(0 0 100% 0);
+            /* Initial state for GSAP */
+        }
+
+        .cert-card:hover {
+            border-color: var(--color-gold);
+        }
+
+        .cert-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 1.5rem;
+            fill: none;
+            stroke: var(--color-gold);
+        }
+
+        .status-badge {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .status-active {
+            color: #4ADE80;
+        }
+
+        .status-active .status-dot {
+            background-color: #4ADE80;
+        }
+
+        .status-pending {
+            color: #FBBF24;
+        }
+
+        .status-pending .status-dot {
+            background-color: #FBBF24;
+            animation-delay: 1s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- SECTION 6: EDUCATION --- */
+        .education-section {
+            background-color: var(--color-deep);
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            background: rgba(13, 20, 23, 0.5);
+            border-left: 3px solid var(--color-gold);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .edu-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 1rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .edu-card {
+                min-width: 85vw;
+                scroll-snap-align: start;
+            }
+        }
+
+        /* --- SECTION 7: CONTACT --- */
+        .contact-section {
+            background-color: var(--color-surface);
+            padding: 10rem 0;
+        }
+
+        .contact-content {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 3rem 0;
+            font-size: 1.1rem;
+            color: var(--color-ivory);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-gold);
+        }
+
+        .btn-large {
+            width: 100%;
+            max-width: 300px;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECTION 8: FOOTER --- */
+        .footer {
+            background-color: var(--color-deep);
+            border-radius: 2rem 2rem 0 0;
+            padding: 4rem 5vw 2rem;
+            color: var(--color-ivory);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-brand svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--color-gold);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--color-slate);
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-brand {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SECTION 1: NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-brand">
+            <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M120 80v240h40V220q0-20 20-20h50q40 0 60-20t20-50-20-50-60-20H120Z" fill="currentColor" />
+                <path d="M160 100h60q30 0 40 15t0 30-40 15h-60Z" fill="var(--color-ivory)" />
+                <path d="m120 120 180 200h-50l-90-100Z" fill="var(--color-gold)" />
+            </svg>
+            Rainier Juson
+        </a>
+        <div class="nav-links">
+            <a href="#about" class="link-item">About</a>
+            <a href="#experience" class="link-item">Experience</a>
+            <a href="#certifications" class="link-item">Certifications</a>
+            <a href="#contact" class="link-item">Contact</a>
+            <a href="#contact" class="btn nav-btn">Connect</a>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#certifications" class="mobile-link">Certifications</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- SECTION 2: HERO -->
+    <section class="hero-section" id="about">
+        <div class="hero-bg-pattern"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <p class="mono text-gold uppercase mb-2 hero-eyebrow" style="font-size: 0.75rem;">Hospitality
+                    Professional</p>
+                <h1 class="hero-title line-height-tight italic">
+                    <div class="hero-title-line">Rainier</div>
+                    <div class="hero-title-line">S. Juson III</div>
+                </h1>
+                <p class="hero-desc mb-6 hero-desc-anim">
+                    A hospitality professional trained in both hotel operations and cruise ship management — dedicated
+                    to delivering structured service excellence while continuously refining leadership and operational
+                    expertise.
+                </p>
+                <div class="hero-btns">
+                    <a href="#experience" class="btn btn-primary hero-btn-anim">View Experience</a>
+                    <a href="assets/files/ranier-cv.pdf" class="btn btn-secondary hero-btn-anim" target="_blank"
+                        download>Download
+                        CV</a>
+                </div>
+            </div>
+            <div class="hero-portrait-wrapper">
+                <img src="assets/images/ranier.avif" alt="Rainier S. Juson III Portrait" class="hero-portrait">
+                <div class="hero-portrait-overlay"></div>
+                <div class="hero-portrait-frame"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: COMPETENCIES -->
+    <section class="section competencies-section" id="competencies">
+        <div class="competencies-bg-band"></div>
+        <div class="container">
+            <div class="section-header">
+                <p class="mono text-gold uppercase mb-2" style="font-size: 0.85rem;">Core Competencies</p>
+                <h2 class="font-display" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">What I Bring to Every Role</h2>
+                <div class="deco-divider"></div>
+            </div>
+            <div class="cards-grid js-comp-cards">
+                <!-- Card 1 -->
+                <div class="glass-card comp-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="12 2 22 12 12 22 2 12 12 2" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <h3 class="card-title">Service Excellence</h3>
+                    <p class="card-tags">Customer Focus &middot; Attention to Detail &middot; Active Listening</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card comp-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" />
+                        <polygon points="12 4 14 10 20 12 14 14 12 20 10 14 4 12 10 10 12 4" />
+                    </svg>
+                    <h3 class="card-title">Operations &amp; Leadership</h3>
+                    <p class="card-tags">Team Management &middot; Effective Communication &middot; Decision Making</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card comp-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 10c0 4.418 3.582 8 8 8s8-3.582 8-8c0-4.418-3.582-8-8-8s-8 3.582-8 8Z"
+                            stroke-dasharray="4 4" />
+                        <path d="M12 22v-4M8 22h8" />
+                        <path d="M12 6l2 3h3l-2.5 2 1 3-3.5-2-3.5 2 1-3-2.5-2h3l2-3z" />
+                    </svg>
+                    <h3 class="card-title">Multi-Department Certified</h3>
+                    <p class="card-tags">Housekeeping &middot; Front Office &middot; Bartending</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card comp-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="5" r="3" />
+                        <path d="M12 22V8" />
+                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+                    </svg>
+                    <h3 class="card-title">Cruise &amp; Hotel Operations</h3>
+                    <p class="card-tags">Cruise Training &middot; Hotel Immersion &middot; 900+ OJT Hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: EXPERIENCE -->
+    <section class="section experience-section" id="experience">
+        <div class="parallax-bg js-parallax-bg"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="section-header">
+                <p class="mono text-gold uppercase mb-2" style="font-size: 0.85rem;">Professional Experience</p>
+                <h2 class="font-display italic" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">A Career Built on
+                    Precision</h2>
+                <div class="deco-divider"></div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <!-- Entry 1 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">2025 &mdash; SUN PLAZA HOTEL</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            OJT &mdash; 600 Hours</h3>
+                        <p class="text-slate mb-1" style="font-weight: 300;">Subic Bay Freeport Zone<br>January 30, 2025
+                            &ndash; July 15, 2025</p>
+                        <span class="tag-pill">Front Office</span>
+                        <span class="tag-pill">Housekeeping</span>
+                        <span class="tag-pill">Operations</span>
+                    </div>
+                </div>
+
+                <!-- Entry 2 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">2023 &mdash; CONRAD HOTEL</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            Hotel Immersion Program</h3>
+                        <span class="tag-pill">Luxury Hotel Operations</span>
+                    </div>
+                </div>
+
+                <!-- Entry 3 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">2023 &mdash; 2GO / ST. FRANCIS XAVIER</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            On-Board Cruise Training</h3>
+                        <span class="tag-pill">Cruise Ship Operations</span>
+                        <span class="tag-pill">Guest Services</span>
+                    </div>
+                </div>
+
+                <!-- Entry 4 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">2022 &mdash; THE MG GRAND HOTEL</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            OJT &mdash; 300 Hours</h3>
+                        <p class="text-slate mb-1" style="font-weight: 300;">Subic Bay Freeport Zone<br>June 16 &ndash;
+                            August 4, 2022</p>
+                        <span class="tag-pill">Hotel Operations</span>
+                    </div>
+                </div>
+
+                <!-- Entry 5 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">ALLYSON PLACE RESTO BAR</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            Kitchen Staff</h3>
+                        <p class="text-slate mb-1" style="font-weight: 300;">Olongapo City</p>
+                        <span class="tag-pill">F&B Service</span>
+                    </div>
+                </div>
+
+                <!-- Entry 6 -->
+                <div class="timeline-entry js-tl-item">
+                    <div class="timeline-dot js-tl-dot"></div>
+                    <div class="timeline-content">
+                        <p class="mono text-gold mb-1">MICHA &mdash; MAGSAYSAY CENTER</p>
+                        <h3 class="mb-1 text-ivory" style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                            Hospitality &amp; Culinary Training</h3>
+                        <span class="tag-pill">Foundational Training</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CERTIFICATIONS -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <p class="mono text-gold uppercase mb-2" style="font-size: 0.85rem;">NCII Certifications</p>
+                <h2 class="font-display" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">Verified. Tested. Certified.
+                </h2>
+                <div class="deco-divider"></div>
+            </div>
+
+            <div class="cert-grid">
+                <!-- Cert 1 -->
+                <div class="cert-card js-cert-card">
+                    <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg>
+                    <h3 class="text-ivory mb-1"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;">NCII
+                        &mdash; Housekeeping</h3>
+                    <p class="text-slate" style="font-size: 0.85rem;">Issued by TESDA</p>
+                    <div class="status-badge mono status-active">
+                        Status: ACTIVE <span class="status-dot"></span>
+                    </div>
+                </div>
+                <!-- Cert 2 -->
+                <div class="cert-card js-cert-card">
+                    <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg>
+                    <h3 class="text-ivory mb-1"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;">NCII
+                        &mdash; Front Office Department</h3>
+                    <p class="text-slate" style="font-size: 0.85rem;">Issued by TESDA</p>
+                    <div class="status-badge mono status-active">
+                        Status: ACTIVE <span class="status-dot"></span>
+                    </div>
+                </div>
+                <!-- Cert 3 -->
+                <div class="cert-card js-cert-card">
+                    <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg>
+                    <h3 class="text-ivory mb-1"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;">NCII
+                        &mdash; Bartending</h3>
+                    <p class="text-slate" style="font-size: 0.85rem;">Issued by TESDA</p>
+                    <div class="status-badge mono status-active">
+                        Status: ACTIVE <span class="status-dot"></span>
+                    </div>
+                </div>
+                <!-- Cert 4 -->
+                <div class="cert-card js-cert-card">
+                    <svg class="cert-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <circle cx="12" cy="12" r="2" fill="var(--color-gold)" />
+                    </svg>
+                    <h3 class="text-ivory mb-1"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;">NCII
+                        &mdash; Food &amp; Beverage Services</h3>
+                    <p class="text-slate" style="font-size: 0.85rem;">Issued by TESDA</p>
+                    <div class="status-badge mono status-pending">
+                        Status: PENDING <span class="status-dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: EDUCATION -->
+    <section class="section education-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="mono text-gold uppercase mb-2" style="font-size: 0.85rem;">Education</p>
+                <h2 class="font-display italic" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">Built from the Ground Up
+                </h2>
+                <div class="deco-divider"></div>
+            </div>
+
+            <div class="edu-grid js-edu-grid">
+                <!-- Edu 1 -->
+                <div class="edu-card js-edu-card">
+                    <p class="mono text-gold mb-1" style="font-size: 0.85rem;">2023&ndash;2025 | Bachelor of Science in
+                        Hospitality Management</p>
+                    <h3 class="text-ivory"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;">St. Benilde
+                        Center for Global Competence Inc.</h3>
+                </div>
+                <!-- Edu 2 -->
+                <div class="edu-card js-edu-card">
+                    <p class="mono text-gold mb-1" style="font-size: 0.85rem;">2021&ndash;2023 | 2 Years Cruise Ship
+                        Management</p>
+                    <h3 class="text-ivory"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;">St. Benilde
+                        Center for Global Competence Inc.</h3>
+                </div>
+                <!-- Edu 3 -->
+                <div class="edu-card js-edu-card">
+                    <p class="mono text-gold mb-1" style="font-size: 0.85rem;">2018&ndash;2020 | Senior High School
+                        &mdash; ICT Strand</p>
+                    <h3 class="text-ivory"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;">St. Benilde
+                        Center for Global Competence Inc.</h3>
+                </div>
+                <!-- Edu 4 -->
+                <div class="edu-card js-edu-card">
+                    <p class="mono text-gold mb-1" style="font-size: 0.85rem;">2014&ndash;2018 | Junior High School</p>
+                    <h3 class="text-ivory"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;">Olongapo
+                        City National High School</h3>
+                </div>
+                <!-- Edu 5 -->
+                <div class="edu-card js-edu-card" style="grid-column: 1 / -1; max-width: 50%;">
+                    <p class="mono text-gold mb-1" style="font-size: 0.85rem;">2008&ndash;2014 | Primary Education</p>
+                    <h3 class="text-ivory"
+                        style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;">Banicain
+                        Elementary School</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CONTACT -->
+    <section class="contact-section js-contact-section" id="contact">
+        <div class="container contact-content">
+            <p class="mono text-gold uppercase mb-2">Open to Opportunities</p>
+            <h2 class="font-display italic mb-4" style="font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1;">Let's
+                Create<br>Exceptional Experiences.</h2>
+            <p class="text-ivory mb-4"
+                style="font-weight: 300; opacity: 0.7; max-width: 500px; margin-left: auto; margin-right: auto;">
+                Whether you're building a hotel team, planning cruise operations, or seeking a dedicated hospitality
+                professional with NCII credentials &mdash; I'm ready to bring structured service excellence to your
+                organization.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span>📧</span> <a href="mailto:rainiertears22@gmail.com">rainiertears22@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span> <a href="tel:09215364353">0921 536 4353</a>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span> <span>Olongapo City, Zambales</span>
+                </div>
+            </div>
+
+            <a href="mailto:rainiertears22@gmail.com" class="btn btn-primary btn-large mb-4">Send a Message</a>
+            <p class="mono text-slate" style="font-size: 0.8rem; opacity: 0.6;">References available upon request.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M120 80v240h40V220q0-20 20-20h50q40 0 60-20t20-50-20-50-60-20H120Z"
+                            fill="var(--color-gold)" />
+                        <path d="M160 100h60q30 0 40 15t0 30-40 15h-60Z" fill="var(--color-ivory)" />
+                        <path d="m120 120 180 200h-50l-90-100Z" fill="var(--color-gold)" />
+                    </svg>
+                    <div>
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;">Rainier S. Juson III
+                        </div>
+                        <div class="mono" style="font-size: 0.75rem; color: var(--color-gold);">Hospitality Professional
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-status mono">
+                    <span class="status-dot"
+                        style="background-color: #4ADE80; display: inline-block; animation: pulse 2s infinite ease-in-out;"></span>
+                    OPEN TO WORK
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2025 Rainier S. Juson III</div>
+                <div>Olongapo City, Philippines</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Architecture -->
+    <script>
+        // 1. Lenis smooth scroll
+        const lenis = new Lenis({ lerp: 0.08, smooth: true });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 3. Sync Lenis with ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        // Ensure Lenis handles anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                lenis.scrollTo(this.getAttribute('href'));
+                // close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // 4. Reduced motion check
+        const mm = gsap.matchMedia();
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+            // 5. Navbar scroll state 
+            const navbar = document.getElementById('navbar');
+            const heroSection = document.getElementById('about');
+
+            const obsOptions = { root: null, threshold: 0.1, rootMargin: "-100px 0px 0px 0px" };
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }, obsOptions);
+            navObserver.observe(heroSection);
+
+            // 6. Hero entrance timeline
+            const heroTl = gsap.timeline({ delay: 0.3 });
+
+            heroTl.fromTo(".hero-eyebrow",
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, "-=0.6"
+            )
+                .fromTo(".hero-title-line",
+                    { y: 40, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", stagger: 0.1 }, "-=0.6"
+                )
+                .fromTo(".hero-desc-anim",
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, "-=0.6"
+                )
+                .fromTo(".hero-btn-anim",
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", stagger: 0.08 }, "-=0.6"
+                )
+                .fromTo(".hero-portrait",
+                    { clipPath: "inset(0 0 100% 0)" },
+                    { clipPath: "inset(0 0 0% 0)", duration: 1.2, ease: "power3.inOut" }, "-=1.2"
+                );
+
+            // 7. ScrollTrigger per section
+
+            // Competencies
+            gsap.fromTo(".comp-card",
+                { y: 40, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 0.9, ease: "power3.out", stagger: 0.12,
+                    scrollTrigger: { trigger: ".competencies-section", start: "top 80%" }
+                }
+            );
+
+            // Experience Parallax
+            gsap.to(".js-parallax-bg", {
+                y: -80,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".experience-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Experience Timeline
+            const tlItems = document.querySelectorAll('.js-tl-item');
+            tlItems.forEach((item, index) => {
+                const isEven = index % 2 === 1; // 0-indexed, so 1,3,5 are 'even' nth-child
+                const xOffset = isEven ? 40 : -40; // Desktop offset
+
+                // Adjust for mobile (always come from left or right doesn't matter much, let's say right mostly)
+                const isMobile = window.innerWidth <= 768;
+                const mXOffset = 40;
+
+                const finalX = isMobile ? mXOffset : xOffset;
+
+                gsap.fromTo(item,
+                    { x: finalX, opacity: 0 },
+                    {
+                        x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+                        scrollTrigger: { trigger: item, start: "top 85%" }
+                    }
+                );
+
+                // Dot spring animation
+                const dot = item.querySelector('.js-tl-dot');
+                if (dot) {
+                    gsap.fromTo(dot,
+                        { scale: 0 },
+                        {
+                            scale: 1, duration: 0.8, ease: "back.out(1.5)",
+                            scrollTrigger: { trigger: item, start: "top 85%" }
+                        }
+                    );
+                }
+            });
+
+            // Certifications
+            gsap.fromTo(".js-cert-card",
+                { clipPath: "inset(0 0 100% 0)" },
+                {
+                    clipPath: "inset(0 0 0% 0)", duration: 0.9, ease: "power3.inOut", stagger: 0.1,
+                    scrollTrigger: { trigger: "#certifications", start: "top 80%" }
+                }
+            );
+
+            // Education
+            gsap.fromTo(".js-edu-card",
+                { x: -30, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 0.9, ease: "power3.out", stagger: 0.1,
+                    scrollTrigger: { trigger: ".education-section", start: "top 80%" }
+                }
+            );
+
+            // Contact
+            gsap.fromTo(".js-contact-section .contact-content",
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: ".contact-section", start: "top 80%" }
+                }
+            );
+
+            return () => { }; // MatchMedia cleanup
+        });
+
+        // 8. Button magnetic hover
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, { scale: 1.03, duration: 0.3, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { scale: 1, duration: 0.3, ease: 'power2.inOut' });
+            });
+        });
+
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+    </script>
+</body>
+
+</html>
